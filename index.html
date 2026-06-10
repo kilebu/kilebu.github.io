@@ -1,631 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caleb Wafula - Senior Full-Stack and AI Engineer</title>
-<meta name="description" content="Senior Full-Stack and AI Engineer with 7+ years. TypeScript, React, Node.js, LangGraph.js, Anthropic Claude API. Nairobi, Kenya. Remote-ready.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0a0a;
-    --bg2: #111111;
-    --bg3: #1a1a1a;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #f0f0f0;
-    --text2: #888;
-    --text3: #555;
-    --accent: #4ade80;
-    --accent2: #86efac;
-    --blue: #60a5fa;
-    --mono: 'DM Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Senior Full-Stack and AI Engineer with 7+ years. TypeScript, React, Node.js, LangGraph.js, Anthropic Claude API. Nairobi, Kenya. Remote-ready." />
+  <title>Caleb Wafula - Senior Full-Stack and AI Engineer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 56px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.02em;
-  }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 13px; color: var(--text2);
-    text-decoration: none; letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --text: #e8e8e8;
+      --muted: #888;
+      --accent: #7c6dfa;
+      --accent-dim: rgba(124,109,250,0.12);
+      --font-mono: 'JetBrains Mono', 'Fira Mono', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 6rem 2rem 4rem;
-    max-width: 900px; margin: 0 auto;
-    position: relative;
-  }
-  .hero-content { max-width: 680px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--mono); font-size: 11px;
-    color: var(--accent); letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: 1px solid rgba(74,222,128,0.25);
-    padding: 5px 12px; border-radius: 20px;
-    margin-bottom: 2rem;
-    background: rgba(74,222,128,0.05);
-  }
-  .badge-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  .hero h1 {
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-  }
-  .hero-desc {
-    font-size: 16px;
-    color: var(--text2);
-    line-height: 1.8;
-    max-width: 560px;
-    margin-bottom: 2.5rem;
-  }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 3rem; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 20px; border-radius: 8px;
-    font-size: 13px; font-family: var(--sans);
-    cursor: pointer; text-decoration: none;
-    transition: all 0.2s; letter-spacing: 0.01em;
-  }
-  .btn-primary {
-    background: var(--accent); color: #0a0a0a; font-weight: 500;
-    border: none;
-  }
-  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-  .btn-secondary {
-    background: transparent; color: var(--text2);
-    border: 1px solid var(--border2);
-  }
-  .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
-  .hero-meta {
-    display: flex; gap: 2rem; flex-wrap: wrap;
-    font-family: var(--mono); font-size: 11px;
-    color: var(--text3); letter-spacing: 0.04em;
-  }
-  .hero-meta span { display: flex; align-items: center; gap: 6px; }
-  .hero-meta span::before {
-    content: '';
-    width: 4px; height: 4px; border-radius: 50%;
-    background: var(--text3);
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+    }
 
-  /* STATS */
-  .stats-bar {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0;
-    max-width: 900px; margin: 0 auto;
-  }
-  .stat-item {
-    padding: 1rem 1.5rem;
-    border-right: 1px solid var(--border);
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-n {
-    font-size: 32px; font-weight: 300;
-    color: var(--text); letter-spacing: -0.02em;
-    line-height: 1;
-  }
-  .stat-n span { color: var(--accent); }
-  .stat-l { font-size: 11px; color: var(--text3); margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; font-family: var(--mono); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-  /* SECTIONS */
-  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-  .section-label {
-    font-family: var(--mono); font-size: 11px;
-    color: var(--accent); letter-spacing: 0.1em;
-    text-transform: uppercase; margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-size: clamp(24px, 4vw, 36px);
-    font-weight: 300; letter-spacing: -0.02em;
-    color: var(--text); margin-bottom: 3rem;
-  }
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-badge {
+      font-size: 0.7rem;
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 2px 10px;
+      letter-spacing: 0.05em;
+    }
 
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .skill-group {
-    background: var(--bg);
-    padding: 1.5rem;
-  }
-  .skill-group:hover { background: var(--bg2); }
-  .sg-label {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--text3); letter-spacing: 0.1em;
-    text-transform: uppercase; margin-bottom: 12px;
-  }
-  .sg-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-  .pill {
-    font-size: 11px; padding: 3px 9px;
-    border-radius: 20px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    color: var(--text2);
-    font-family: var(--mono);
-  }
-  .pill.hi { color: var(--accent); border-color: rgba(74,222,128,0.2); background: rgba(74,222,128,0.05); }
+    /* HERO */
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost { border: 1px solid var(--border); color: var(--text); }
 
-  /* EXPERIENCE */
-  .exp-list { display: flex; flex-direction: column; gap: 0; }
-  .exp-entry {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .exp-entry:last-child { border-bottom: none; }
-  .exp-date-col { padding-top: 3px; }
-  .exp-date {
-    font-family: var(--mono); font-size: 11px;
-    color: var(--text3); letter-spacing: 0.04em;
-    line-height: 1.6;
-  }
-  .exp-right {}
-  .exp-role { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
-  .exp-co { font-size: 13px; color: var(--blue); margin-bottom: 12px; font-family: var(--mono); }
-  .exp-buls { list-style: none; }
-  .exp-buls li {
-    font-size: 13px; color: var(--text2);
-    padding-left: 16px; position: relative;
-    margin-bottom: 5px; line-height: 1.6;
-  }
-  .exp-buls li::before { content: "-"; position: absolute; left: 0; color: var(--text3); }
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
 
-  /* PROJECTS */
-  .proj-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .proj-card {
-    background: var(--bg);
-    padding: 1.75rem;
-    transition: background 0.2s;
-  }
-  .proj-card:hover { background: var(--bg2); }
-  .proj-num {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--text3); letter-spacing: 0.08em;
-    margin-bottom: 1rem;
-  }
-  .proj-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
-  .proj-desc { font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
-  .proj-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-  .proj-tag {
-    font-size: 10px; padding: 2px 7px;
-    border-radius: 20px; font-family: var(--mono);
-    background: var(--bg3); border: 1px solid var(--border);
-    color: var(--text3);
-  }
+    /* STATS */
+    .stats {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stat {
+      padding: 2rem 1.5rem;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
 
-  /* EDUCATION */
-  .edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-  }
-  .edu-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-  }
-  .edu-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-  .edu-inst { font-size: 12px; color: var(--text3); font-family: var(--mono); }
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+    }
 
-  /* CONTACT */
-  .contact-section {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  .contact-inner { max-width: 560px; margin: 0 auto; }
-  .contact-section h2 { font-size: 28px; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 1rem; }
-  .contact-section p { color: var(--text2); font-size: 14px; margin-bottom: 2rem; }
-  .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-  .contact-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 18px; border-radius: 8px;
-    font-size: 13px; font-family: var(--mono);
-    text-decoration: none; color: var(--text2);
-    border: 1px solid var(--border2);
-    transition: all 0.2s;
-  }
-  .contact-link:hover { color: var(--text); border-color: rgba(255,255,255,0.3); background: var(--bg3); }
-  .contact-link.primary { color: var(--accent); border-color: rgba(74,222,128,0.3); }
-  .contact-link.primary:hover { background: rgba(74,222,128,0.08); }
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
 
-  /* FOOTER */
-  footer {
-    text-align: center; padding: 2rem;
-    font-family: var(--mono); font-size: 11px;
-    color: var(--text3); letter-spacing: 0.04em;
-    border-top: 1px solid var(--border);
-  }
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 1.5rem;
+    }
+    .exp-date {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding-top: 0.2rem;
+      line-height: 1.5;
+    }
+    .exp-role {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .exp-body { color: var(--muted); font-size: 0.88rem; }
+    .exp-body ul { padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; }
 
-  /* RESPONSIVE */
-  @media (max-width: 600px) {
-    .exp-entry { grid-template-columns: 1fr; gap: 0.5rem; }
-    .nav-links { display: none; }
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
-    .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
-  }
-</style>
-</head>
-<body>
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(390px, 1fr));
+      gap: 1.25rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .project-card:hover { border-color: var(--accent); }
+    .project-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+    .project-name {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      flex: 1;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.25rem; }
+    .project-stack .tag { font-size: 0.7rem; }
+    .project-links { display: flex; gap: 0.75rem; margin-top: 0.25rem; }
+    .project-links a {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-family: var(--font-mono);
+    }
 
-<nav>
-  <div class="nav-logo">caleb.wafula</div>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    /* CREDENTIALS */
+    .cred-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .cred-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cred-item:last-child { border-bottom: none; }
+    .cred-title { font-weight: 600; font-size: 0.95rem; }
+    .cred-org { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+    .cred-date { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); white-space: nowrap; margin-left: 1rem; }
 
-<div class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      Open to new roles
-    </div>
-    <h1>Senior Full-Stack<br>and <em>AI Engineer</em></h1>
-    <p class="hero-desc">
-      7+ years shipping production-grade platforms end-to-end. Expert in TypeScript, React, Node.js, and LLM integration. Building infrastructure that governments, NGOs, and underserved communities depend on.
-    </p>
-    <div class="hero-actions">
-      <a href="mailto:calebchunguli22@gmail.com" class="btn btn-primary">Get in touch</a>
-      <a href="#experience" class="btn btn-secondary">View experience</a>
-    </div>
-    <div class="hero-meta">
-      <span>Nairobi, Kenya</span>
-      <span>GMT+3</span>
-      <span>Remote-ready</span>
-      <span>Africa / Europe overlap</span>
-    </div>
-  </div>
-</div>
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+    }
+    .contact-card-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem; }
+    .contact-card-value { font-size: 0.95rem; color: var(--text); }
+    .contact-card-value a { color: var(--text); }
 
-<div class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-n">7<span>+</span></div>
-    <div class="stat-l">Years experience</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-n">99.9<span>%</span></div>
-    <div class="stat-l">Platform uptime</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-n">50<span>+</span></div>
-    <div class="stat-l">Institutional clients</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-n">10k<span>+</span></div>
-    <div class="stat-l">Daily transactions</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-n">4<span>x</span></div>
-    <div class="stat-l">Multi-agent systems</div>
-  </div>
-</div>
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
 
-<section id="skills">
-  <div class="section-label">What I work with</div>
-  <div class="section-title">Core skills</div>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <div class="sg-label">Languages</div>
-      <div class="sg-pills">
-        <span class="pill hi">TypeScript</span>
-        <span class="pill hi">Python</span>
-        <span class="pill">JavaScript</span>
-        <span class="pill">Go</span>
-        <span class="pill">SQL</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="sg-label">Frontend</div>
-      <div class="sg-pills">
-        <span class="pill hi">React</span>
-        <span class="pill hi">Next.js</span>
-        <span class="pill">Expo</span>
-        <span class="pill">Tailwind CSS</span>
-        <span class="pill">WebSocket</span>
-        <span class="pill">SSE</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="sg-label">AI and agents</div>
-      <div class="sg-pills">
-        <span class="pill hi">LangGraph.js</span>
-        <span class="pill hi">LangChain</span>
-        <span class="pill">Claude API</span>
-        <span class="pill">OpenAI API</span>
-        <span class="pill">RAG pipelines</span>
-        <span class="pill">Multi-agent</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="sg-label">Backend</div>
-      <div class="sg-pills">
-        <span class="pill hi">Node.js</span>
-        <span class="pill">NestJS</span>
-        <span class="pill">GraphQL</span>
-        <span class="pill">REST APIs</span>
-        <span class="pill">OAuth2</span>
-        <span class="pill">JWT</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="sg-label">Data</div>
-      <div class="sg-pills">
-        <span class="pill hi">PostgreSQL</span>
-        <span class="pill">Redis</span>
-        <span class="pill">MongoDB</span>
-        <span class="pill">InfluxDB</span>
-        <span class="pill">Supabase</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="sg-label">Infrastructure</div>
-      <div class="sg-pills">
-        <span class="pill hi">AWS</span>
-        <span class="pill hi">GCP</span>
-        <span class="pill">Docker</span>
-        <span class="pill">Kubernetes</span>
-        <span class="pill">Terraform</span>
-        <span class="pill">Ansible</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="section-label">Where I have worked</div>
-  <div class="section-title">Experience</div>
-  <div class="exp-list">
-
-    <div class="exp-entry">
-      <div class="exp-date-col">
-        <div class="exp-date">Aug 2025<br>Present</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">AI Agent Engineer</div>
-        <div class="exp-co">SoulKode - Remote (Freelance)</div>
-        <ul class="exp-buls">
-          <li>Built production multi-agent orchestration workflows using LangGraph.js and Anthropic Claude API including Supervisor Agent, DNS resolver, port-scanner, and Email Assistant agents</li>
-          <li>Reduced manual testing effort by 40% with a Python LLM validation runner against strict JSON schemas</li>
-          <li>Engineered secure remote code execution environments with terminal process isolation and filesystem sandboxing</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-entry">
-      <div class="exp-date-col">
-        <div class="exp-date">Jun 2024<br>Jan 2026</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Senior Full-Stack Engineer</div>
-        <div class="exp-co">Polariks (Bosman Van Zaal) - Remote</div>
-        <ul class="exp-buls">
-          <li>99.9% uptime across 1,000+ connected IoT devices over 18 months on AWS and GCP</li>
-          <li>Built streaming real-time dashboards with WebSocket and SSE, cutting data latency by 45%</li>
-          <li>Designed full design system with shared tokens, component library, and documented patterns</li>
-          <li>Integrated LLM APIs (Anthropic Claude, OpenAI) into production SaaS workflows with output validation and fallback handling</li>
-          <li>Reduced API response latency by 30% and initial load times by 35%</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-entry">
-      <div class="exp-date-col">
-        <div class="exp-date">Aug 2022<br>Jun 2024</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Head of IT / Senior Full-Stack Engineer</div>
-        <div class="exp-co">Digital Sacco - Nairobi, Kenya</div>
-        <ul class="exp-buls">
-          <li>99.7% reliability across 10,000+ daily financial transactions for 5,000+ daily active users</li>
-          <li>Reduced payment failure rates by 25% with real-time M-PESA integration and state tracking</li>
-          <li>Cut deployment time by 60% via GitLab CI/CD pipelines</li>
-          <li>Mentored 4 junior engineers, increasing team delivery velocity by 30%</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-entry">
-      <div class="exp-date-col">
-        <div class="exp-date">Mar 2022<br>Dec 2025</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Senior Full-Stack Engineer / Project Lead</div>
-        <div class="exp-co">Enaton Tech - Remote (Contract)</div>
-        <ul class="exp-buls">
-          <li>Delivered 0-to-1 multi-tenant SaaS platform in under 5 months serving 50+ institutional clients</li>
-          <li>5x traffic growth with zero additional infrastructure cost via Kubernetes and advanced PostgreSQL optimisation</li>
-          <li>Led remote team of 6 engineers, 4 major releases with zero critical production bugs</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-entry">
-      <div class="exp-date-col">
-        <div class="exp-date">Nov 2018<br>Apr 2021</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Full-Stack Developer / Product Lead</div>
-        <div class="exp-co">Innovex Solutions - Nairobi, Kenya</div>
-        <ul class="exp-buls">
-          <li>Reduced backend processing time from 5 days to 24 hours via event-driven architecture redesign</li>
-          <li>Improved delivery efficiency by 30% introducing TypeScript and code review standards</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="projects">
-  <div class="section-label">Things I have built</div>
-  <div class="section-title">Key projects</div>
-  <div class="proj-grid">
-    <div class="proj-card">
-      <div class="proj-num">01</div>
-      <div class="proj-name">Multi-agent AI system</div>
-      <div class="proj-desc">LangGraph.js orchestration with Supervisor Agent, DNS resolver, port-scanner, and Email Assistant agents. Streaming agentic tool interfaces with real-time output validation.</div>
-      <div class="proj-tags">
-        <span class="proj-tag">LangGraph.js</span>
-        <span class="proj-tag">LangChain</span>
-        <span class="proj-tag">Python</span>
-        <span class="proj-tag">Claude API</span>
-        <span class="proj-tag">Node.js</span>
-      </div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">02</div>
-      <div class="proj-name">IoT real-time platform</div>
-      <div class="proj-desc">Self-hosted platform with streaming dashboards, design system component library, custom OAuth, 1,000+ devices at 99.9% uptime over 18 months.</div>
-      <div class="proj-tags">
-        <span class="proj-tag">React</span>
-        <span class="proj-tag">Node.js</span>
-        <span class="proj-tag">WebSocket</span>
-        <span class="proj-tag">PostgreSQL</span>
-        <span class="proj-tag">AWS</span>
-        <span class="proj-tag">Terraform</span>
-      </div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">03</div>
-      <div class="proj-name">Multi-tenant SaaS platform</div>
-      <div class="proj-desc">0-to-1 marketplace-style platform serving 50+ institutional clients with configurable admin UIs, modular backend, and 5x traffic growth at zero extra cost.</div>
-      <div class="proj-tags">
-        <span class="proj-tag">Next.js</span>
-        <span class="proj-tag">Kubernetes</span>
-        <span class="proj-tag">Terraform</span>
-        <span class="proj-tag">GCP</span>
-        <span class="proj-tag">PostgreSQL</span>
-      </div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-num">04</div>
-      <div class="proj-name">Fintech payment platform</div>
-      <div class="proj-desc">High-reliability financial platform with M-PESA integration, real-time state tracking, 10,000+ daily transactions at 99.7% reliability.</div>
-      <div class="proj-tags">
-        <span class="proj-tag">Node.js</span>
-        <span class="proj-tag">TypeScript</span>
-        <span class="proj-tag">PostgreSQL</span>
-        <span class="proj-tag">Redis</span>
-        <span class="proj-tag">AWS</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="section-label">Education and certifications</div>
-  <div class="section-title">Credentials</div>
-  <div class="edu-grid">
-    <div class="edu-card">
-      <div class="edu-title">BSc Business and Information Technology</div>
-      <div class="edu-inst">Jomo Kenyatta University of Agriculture and Technology</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-title">Diploma in Software Development</div>
-      <div class="edu-inst">eMobilis Mobile Technology Institute</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-title">Certified Cyber Security Analyst</div>
-      <div class="edu-inst">CyberWarfare Labs - Oct 2024</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-title">API Security Fundamentals</div>
-      <div class="edu-inst">APISEC University - Oct 2024</div>
-    </div>
-  </div>
-</section>
-
-<div class="contact-section" id="contact">
-  <div class="contact-inner">
-    <h2>Let's work together</h2>
-    <p>Open to senior full-stack, AI engineering, and principal engineer roles at mission-driven organizations. Remote, Africa/Europe timezones.</p>
-    <div class="contact-links">
-      <a href="mailto:calebchunguli22@gmail.com" class="contact-link primary">calebchunguli22@gmail.com</a>
-      <a href="tel:+254768218400" class="contact-link">+254 768 218 400</a>
-      <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
-      <a href="https://github.com" class="contact-link">GitHub</a>
-    </div>
-  </div>
-</div>
-
-<footer>
-  Caleb Chunguli Wafula - Nairobi, Kenya (GMT+3) - Built with HTML, CSS, zero frameworks
-</footer>
-
-</body>
-</html>
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .stat:nth-child(3) { border-right: none; }
+      .stat:nth-child(4) { border-top: 1px solid var(--border); }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contac
